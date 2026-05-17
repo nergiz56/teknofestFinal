@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hasta Hikayesi | NeuroScan AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <nav class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2 cursor-pointer">
+                    <div class="bg-blue-600 p-1.5 rounded text-white">
+                        <i class="ri-brain-line text-lg"></i>
+                    </div>
+                    <span class="font-bold text-gray-900 tracking-tight">FIRAT-NEUROTEC</span>
+                </div>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="index.html" class="text-sm font-medium text-gray-500 hover:text-gray-900">Ana Sayfa</a>
+                    <a href="mrtaramalari.html" class="text-sm font-medium text-gray-500 hover:text-gray-900">MR Taramaları</a>
+                    <a href="analiz.html" class="text-sm font-medium text-gray-500 hover:text-gray-900">Analiz</a>
+                    <a href="hastahikayesi.html" class="text-sm font-bold text-blue-600">Hasta Hikayesi</a>
+
+                    <div class="border-l border-gray-300 h-5 mx-2"></div>
+                    <a href="hakkinda.html" class="text-sm font-medium text-gray-500 hover:text-gray-900">Hakkında</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <br>
+
+    <main class="flex-grow py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="mb-8 text-center">
+                <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="ri-clipboard-line text-3xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900">Klinik Veri ve Hasta Hikayesi</h2>
+                <p class="text-gray-500 mt-2 text-sm">MR analizi öncesi hastanın demografik ve klinik bulgularını sisteme girin.</p>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <i class="ri-lightbulb-flash-line text-yellow-500"></i> Hızlı Doldurma: Örnek Vakalar (Demo)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    
+                    <div onclick="fillSample(1)" class="bg-blue-50 border border-blue-100 p-5 rounded-xl cursor-pointer hover:bg-blue-100 hover:shadow-md transition shadow-sm group">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="font-bold text-blue-800 text-sm">Vaka #01: Akciğer CA Kaynaklı</span>
+                            <i class="ri-arrow-right-up-line text-blue-400 group-hover:text-blue-600 transition text-lg"></i>
+                        </div>
+                        <p class="text-xs text-blue-600 leading-relaxed">62 Yaş, Erkek. Şiddetli baş ağrısı ve sağ kolda uyuşma. Bilinen küçük hücreli dışı akciğer kanseri öyküsü...</p>
+                    </div>
+
+                    <div onclick="fillSample(2)" class="bg-purple-50 border border-purple-100 p-5 rounded-xl cursor-pointer hover:bg-purple-100 hover:shadow-md transition shadow-sm group">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="font-bold text-purple-800 text-sm">Vaka #02: Meme CA Kaynaklı</span>
+                            <i class="ri-arrow-right-up-line text-purple-400 group-hover:text-purple-600 transition text-lg"></i>
+                        </div>
+                        <p class="text-xs text-purple-600 leading-relaxed">48 Yaş, Kadın. Sabahları artan bulantı ve çift görme. Geçmişte evre 3 meme kanseri tedavisi öyküsü...</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+                <form action="mrtaramalari.html" method="GET" class="p-8">
+                    
+                    <h3 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-6"><i class="ri-user-line text-blue-600 mr-2"></i>Demografik Bilgiler</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Ad Soyad (Opsiyonel)</label>
+                            <input type="text" id="adSoyad" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Örn: Ayşe Yılmaz">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">TCKN / Protokol No</label>
+                            <input type="text" id="tckn" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="11 haneli kimlik no">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Yaş</label>
+                            <input type="number" id="yas" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-blue-500 focus:border-blue-500 outline-none transition" placeholder="Örn: 54">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Cinsiyet</label>
+                            <select id="cinsiyet" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-blue-500 focus:border-blue-500 outline-none transition bg-white">
+                                <option value="" disabled selected>Seçiniz</option>
+                                <option value="kadin">Kadın</option>
+                                <option value="erkek">Erkek</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-bold text-gray-900 border-b border-gray-100 pb-2 mb-6"><i class="ri-heart-pulse-line text-red-500 mr-2"></i>Klinik Durum ve Anamnez</h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Başvuru Şikayeti (Semptomlar)</label>
+                            <textarea id="sikayet" rows="3" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-blue-500 focus:border-blue-500 outline-none transition resize-none" placeholder="Örn: Son 1 haftadır artan şiddetli baş ağrısı, sol kolda uyuşma..."></textarea>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tıbbi Öykü (Kronik Hastalıklar, Geçirilmiş Operasyonlar)</label>
+                            <textarea id="oyku" rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-blue-500 focus:border-blue-500 outline-none transition resize-none" placeholder="Örn: 2 yıl önce Meme CA tanısı ile opere edildi. Aktif kemoterapi alıyor..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 flex justify-end gap-4 border-t border-gray-100 pt-6">
+                        <button type="button" onclick="document.querySelector('form').reset()" class="px-6 py-2.5 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition">Temizle</button>
+                        <button type="submit" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition flex items-center gap-2">
+                            Kaydet ve MR Yüklemeye Geç <i class="ri-arrow-right-line"></i>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-slate-200 text-center bg-white mt-auto">
+        <p class="text-slate-400 text-xs tracking-widest font-medium uppercase">FIRAT-NEUROTEC | TEKNOFEST 2026</p>
+    </footer>
+
+    <script>
+        function fillSample(id) {
+            if(id === 1) {
+                document.getElementById('adSoyad').value = "Ahmet Yılmaz";
+                document.getElementById('tckn').value = "10293847561";
+                document.getElementById('yas').value = "62";
+                document.getElementById('cinsiyet').value = "erkek";
+                document.getElementById('sikayet').value = "Son 2 haftadır artan şiddetli baş ağrısı, sağ kolda uyuşma ve yürürken denge kaybı.";
+                document.getElementById('oyku').value = "1 yıl önce Küçük Hücreli Dışı Akciğer Kanseri (KHDAK) tanısı alındı. Radyoterapi ve kemoterapi öyküsü mevcut. Yeni gelişen nörolojik semptomlar üzerine metastaz şüphesiyle MR istendi.";
+            } else if(id === 2) {
+                document.getElementById('adSoyad').value = "Ayşe Demir";
+                document.getElementById('tckn').value = "98765432109";
+                document.getElementById('yas').value = "48";
+                document.getElementById('cinsiyet').value = "kadin";
+                document.getElementById('sikayet').value = "Sabahları uyanınca artan bulantı, kusma atakları ve çift görme şikayeti.";
+                document.getElementById('oyku').value = "3 yıl önce Evre 3 Meme Kanseri nedeniyle opere edildi. Tedavisi tamamlanmıştı ancak son 1 aydır devam eden baş ağrısı şikayetlerine son günlerde görme bozuklukları eklendi.";
+            }
+            
+            window.scrollTo({ 
+                top: document.querySelector('form').offsetTop - 20, 
+                behavior: 'smooth' 
+            });
+        }
+    </script>
+
+</body>
+</html>

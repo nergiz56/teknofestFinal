@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MR Yükleme | NeuroScan AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        
+        @keyframes loading { 0% { left: -50%; } 100% { left: 100%; } }
+        
+        .upload-dashed-box { border: 2px dashed #cbd5e1; transition: all 0.2s ease; }
+        .upload-dashed-box:hover { border-color: #2563eb; background-color: #f8fafc; }
+        .loader-bar { width: 100%; height: 4px; background-color: #e5e7eb; border-radius: 4px; overflow: hidden; position: relative; }
+        .loader-bar::after { content: ''; position: absolute; left: -50%; height: 100%; width: 50%; background-color: #2563eb; border-radius: 4px; animation: loading 1.5s infinite ease-in-out; }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <nav class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2 cursor-pointer">
+                    <div class="bg-blue-600 p-1.5 rounded text-white">
+                        <i class="ri-brain-line text-lg"></i>
+                    </div>
+                    <span class="font-bold text-gray-900 tracking-tight">FIRAT-NEUROTEC</span>
+                </div>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="index.html" class="text-sm font-medium text-gray-500 hover:text-gray-900">Ana Sayfa</a>
+                    <a href="mrtaramalari.html" class="text-sm font-bold text-blue-600">MR Taramaları</a>
+                    <a href="analiz.html" class="text-sm font-medium text-gray-500 hover:text-gray-900">Analiz</a>
+                    <a href="hastahikayesi.html" class="text-sm font-medium text-gray-500 hover:text-gray-900">Hasta Hikayesi</a>
+                    <div class="border-l border-gray-300 h-5 mx-2"></div>
+                    <a href="hakkinda.html" class="text-sm font-medium text-gray-500 hover:text-gray-900">Hakkında</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main id="uploadSection" class="flex-grow py-8">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                        <i class="ri-upload-cloud-2-line text-blue-600"></i> MR Görüntüsü Yükle
+                    </h2>
+                    <p class="text-sm text-gray-500 mt-1">Lütfen analiz edilmesini istediğiniz T1, T2 veya FLAIR MR kesitini seçin.</p>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-sm font-bold text-gray-500 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <i class="ri-lightbulb-flash-line text-yellow-500"></i> Hızlı Analiz: Örnek Taramalar (Demo)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div onclick="startRedirect(1)" class="bg-red-50 border border-red-100 p-5 rounded-xl cursor-pointer hover:bg-red-100 hover:shadow-md transition shadow-sm group flex items-center gap-4">
+                        <div class="w-16 h-16 bg-black rounded-lg flex items-center justify-center overflow-hidden shrink-0">
+                            <img src="https://placehold.co/100x100/1e293b/ffffff?text=MR+1" class="opacity-80 group-hover:opacity-100 transition" alt="MR 1">
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex justify-between items-start mb-1">
+                                <span class="font-bold text-red-800 text-sm">Örnek Tarama #01</span>
+                                <i class="ri-play-circle-line text-red-400 group-hover:text-red-600 transition text-xl"></i>
+                            </div>
+                            <p class="text-xs text-red-600">Patolojik Bulgulu Vaka (Glioma Şüphesi).</p>
+                        </div>
+                    </div>
+
+                    <div onclick="startRedirect(2)" class="bg-emerald-50 border border-emerald-100 p-5 rounded-xl cursor-pointer hover:bg-emerald-100 hover:shadow-md transition shadow-sm group flex items-center gap-4">
+                        <div class="w-16 h-16 bg-black rounded-lg flex items-center justify-center overflow-hidden shrink-0">
+                            <img src="https://placehold.co/100x100/1e293b/ffffff?text=MR+2" class="opacity-80 group-hover:opacity-100 transition" alt="MR 2">
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex justify-between items-start mb-1">
+                                <span class="font-bold text-emerald-800 text-sm">Örnek Tarama #02</span>
+                                <i class="ri-play-circle-line text-emerald-400 group-hover:text-emerald-600 transition text-xl"></i>
+                            </div>
+                            <p class="text-xs text-emerald-600">Sağlıklı / Temiz Kontrol Vakası.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="upload-dashed-box bg-white rounded-2xl p-12 flex flex-col items-center justify-center text-center cursor-pointer h-full min-h-[400px] shadow-sm relative overflow-hidden" id="uploadArea">
+                <input type="file" id="file" class="hidden" accept="image/*" />
+                
+                <div id="uploadContent">
+                    <div class="bg-blue-50 text-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-image-add-line text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Taramayı Buraya Sürükleyin</h3>
+                    <p class="text-sm text-gray-400 mb-8">veya bilgisayarınızdan bir MR kesiti seçin (JPEG / PNG)</p>
+                    
+                    <button id="selectBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl text-sm font-bold shadow-md transition flex items-center mx-auto gap-2">
+                        <i class="ri-folder-open-line"></i> Dosya Seç
+                    </button>
+                </div>
+
+                <div id="loadingContent" class="hidden w-full max-w-sm mx-auto">
+                    <div class="bg-blue-50 text-blue-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 relative">
+                        <i class="ri-brain-line text-4xl absolute animate-pulse"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-4">Yapay Zeka Analiz Ediyor...</h3>
+                    <div class="loader-bar mb-3"></div>
+                    <p class="text-xs text-gray-400">Sonuç ekranına yönlendiriliyorsunuz.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    
+
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('file');
+        const selectBtn = document.getElementById('selectBtn');
+        const uploadContent = document.getElementById('uploadContent');
+        const loadingContent = document.getElementById('loadingContent');
+
+        uploadArea.addEventListener('click', (e) => { if(e.target !== selectBtn) fileInput.click(); });
+        selectBtn.addEventListener('click', (e) => { e.stopPropagation(); fileInput.click(); });
+
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('uploadedMR', e.target.result);
+                    startRedirect('custom');
+                }
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        });
+
+        function startRedirect(vakaId) {
+            window.scrollTo({ top: document.getElementById('uploadSection').offsetTop, behavior: 'smooth' });
+            uploadContent.classList.add('hidden');
+            loadingContent.classList.remove('hidden');
+            uploadArea.classList.remove('cursor-pointer', 'hover:border-blue-600');
+            
+            setTimeout(() => {
+                // Analiz sayfasına yönlendiriyoruz
+              window.location.href = `analiz.html?vaka=${vakaId}`;
+            }, 3000); 
+        }
+    </script>
+</body>
+</html>
