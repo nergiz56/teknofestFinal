@@ -5,7 +5,7 @@ jinja2
 torch
 torchvision
 torchaudio
-opencv-python
+opencv-python-headless
 Pillow
 numpy
 scikit-learn
